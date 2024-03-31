@@ -1,0 +1,11 @@
+.header {
+    width: 98%;
+    margin: auto;
+    background-color: #f4f4f4;
+    height: 130px;
+    line-height: 130px; /* 实现垂直居中 */
+    text-align: center;
+
+    margin-top: 5px;
+    border-bottom: rgb(190, 188, 188) 3px solid;
+}
