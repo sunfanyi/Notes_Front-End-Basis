@@ -1,0 +1,51 @@
+.container1 view {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    /* 纵向居中 */
+    line-height: 100px;  
+}
+
+.container1 view:nth-child(1) {
+    background-color: lightgreen;
+}
+
+.container1 view:nth-child(2) {
+    background-color: lightskyblue;
+}
+
+.container1 view:nth-child(3) {
+    background-color: lightpink;
+}
+
+#container-view {
+    display: flex;
+    justify-content: space-around;
+}
+
+#container-scroll-view {
+    /* 限定高度 */
+    height: 120px;
+    width: 100px;
+    border: 1px solid red;
+}
+
+.swiper-container {
+    height: 150px;
+}
+swiper-item {
+    /* 这个不放在上面是为了不让indicator也一直垂直居中 */
+    line-height: 150px;
+    text-align: center;
+}
+swiper-item:nth-child(1) .item {
+    background-color: lightgreen;
+}
+
+swiper-item:nth-child(2) .item {
+    background-color: lightskyblue;
+}
+
+swiper-item:nth-child(3) .item {
+    background-color: lightpink;
+}
