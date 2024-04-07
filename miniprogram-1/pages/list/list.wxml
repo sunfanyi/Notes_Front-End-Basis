@@ -1,5 +1,33 @@
 <!--pages/list/list.wxml-->
 <!-- <text>pages/list/list.wxml</text> -->
+<view class="divider">
+  <text class="divider-text">2. 模板与样式</text>
+</view>
+
+<view>{{info}}</view>
+<image src="{{imgSrc}}" mode="aspectFit"></image>
+<view>{{randNum1 > 5? '>5' : '<=5'}}</view>
+<view>{{randNum1 * 100}}</view>
+
+<text>\n</text>
+<button type="primary" bindtap="btnConsoleLog">console log按钮</button>
+<text>\n</text>
+<button type="primary" bindtap="btnChangeCount">+1按钮</button>
+<text>\n</text>
+<!-- data-info="{{2}}"会传递数值；data-info="2"会传递字符串 -->
+<button type="primary" bindtap="btnPassParameter" data-val_to_add="{{2}}">传参按钮</button>
+
+
+<text>\n</text>
+<input bindinput="inputConsoleLog"></input>
+<input value="{{inputMsg}}" bindinput="inputUpdateData"></input>
+
+
+
+<view class="divider">
+  <text class="divider-text">1. 起步</text>
+</view>
+
 <view class="container1" id="container-view">
     <view>A</view>
     <view>B</view>

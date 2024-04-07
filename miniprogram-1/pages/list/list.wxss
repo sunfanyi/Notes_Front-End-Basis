@@ -1,9 +1,37 @@
+.divider {
+    height: 2px;
+    background-color: #e5e5e5;
+    display: flex;
+    /* 垂直居中 */
+    align-items: center;
+    /* 水平居中 */
+    justify-content: center;
+    /* 相对定位 */
+    position: relative;
+    margin: 25px 10px;
+}
+
+.divider-text {
+    font-weight: bold;
+    background-color: #fff;
+    color: #636060;
+    padding: 0 10px;
+    position: absolute;
+}
+
+input {
+    border: 1px solid rgb(207, 205, 205);
+    margin: 5px;
+    padding: 5px;
+    border-radius: 3px;
+}
+
 .container1 view {
     width: 100px;
     height: 100px;
     text-align: center;
     /* 纵向居中 */
-    line-height: 100px;  
+    line-height: 100px;
 }
 
 .container1 view:nth-child(1) {
@@ -33,11 +61,13 @@
 .swiper-container {
     height: 150px;
 }
+
 swiper-item {
     /* 这个不放在上面是为了不让indicator也一直垂直居中 */
     line-height: 150px;
     text-align: center;
 }
+
 swiper-item:nth-child(1) .item {
     background-color: lightgreen;
 }
