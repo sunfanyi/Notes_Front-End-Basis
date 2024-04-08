@@ -8,3 +8,18 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+
+view {
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(51, 50, 50);
+}
+
+#global-local-style-example {
+    background-color: lightblue;
+}
+
+#global-local-style-example view:nth-child(1) {
+    background-color: lightblue;
+}
+
+

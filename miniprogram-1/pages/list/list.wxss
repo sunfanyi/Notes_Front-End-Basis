@@ -1,3 +1,5 @@
+@import "/common/common.wxss";
+
 .divider {
     height: 4px;
     background-color: #e5e5e5;
@@ -29,6 +31,10 @@
     color: #636060;
     padding: 0 10px;
     position: absolute;
+}
+
+#global-local-style-example {
+    background-color: lightpink;
 }
 
 input {

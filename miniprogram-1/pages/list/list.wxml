@@ -9,8 +9,19 @@
 <view class="divider2">
     <text class="divider-text">2.2. WXSS 模板样式</text>
 </view>
+<!-- ================ 样式导入 ============== -->
+<view>~~~~~~~~~~~ 样式导入 ~~~~~~~~~~~ </view>
+<view id="import-example">username</view>
 
-
+<!-- ================ 全局样式和局部样式 ============== -->
+<text>\n</text>
+<view>~~~~~~~~~~~ 全局样式和局部样式 ~~~~~~~~~~~ </view>
+<text>\n</text>
+<view id="global-local-style-example">
+    <view>line 1</view>
+    <view>line 2</view>
+    <view>line 3</view>
+</view>
 <!-- ======================================= 2.1. WXML 模板语法 ====================================== -->
 <text>\n</text>
 <view class="divider2">
@@ -72,10 +83,12 @@
 <view wx:for="{{arr1}}" wx:key="key">
     index: {{index}}, item: {{item}}
 </view>
+
 <text>\n</text>
 <view wx:for="{{arr1}}" wx:for-index="idx" wx:for-item="itm" wx:key="key">
-    index: {{idx}}, item: {{itm}}
+    <text>index: {{idx}}, item: {{itm}}</text>
 </view>
+
 <text>\n</text>
 <view wx:for="{{userList}}" wx:key="id">
     {{item.name}}

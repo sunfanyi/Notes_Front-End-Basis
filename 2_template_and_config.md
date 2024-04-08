@@ -321,67 +321,97 @@ data: {
 
 # 2. WXSS 模板样式
 
-## 2.1. 
+## 2.1. 介绍
 
-```html
+- WXSS (WeiXin Style Sheets)是一套样式语言，用于美化 WXML 的组件样式，类似于网页开发中的 CSS。
 
-```
+- WXSS 具有 CSS 大部分特性，同时，WXSS 还对 CSS 进行了扩充以及修改，以适应微信小程序的开发。
 
-
-
-## 2.2. 
+<img src="assets/2_template_and_config/image-20240409001415814.png" alt="image-20240409001415814" style="zoom:80%;" />
 
 
 
+## 2.2. RPX 尺寸
 
-
-```html
-
-```
-
-
-
-```html
-
-```
+- rpx（responsive pixel）是微信小程序独有的，用来解决屏适配的尺寸单位。
+- rpx 的实现原理非常简单：鉴于不同设备屏幕的大小不同，为了实现屏幕的自动适配，rpx 把所有设备的屏幕，在宽度上等分为 750 份（即：当前屏幕的总宽度为 750rpx）。
+- 小程序在不同设备上运行的时候，会自动把 rpx 的样式单位换算成对应的像素单位来渲染，从而实现屏幕适配。
 
 
 
-```html
+在 iPhone6 上，屏幕宽度为375px，共有 750 个物理像素，等分为 750rpx。则：
 
-```
-
-
-
-```html
-
-```
+<img src="assets/2_template_and_config/image-20240409001457063.png" alt="image-20240409001457063" style="zoom:67%;" />
 
 
 
-## 2.3. 
+## 2.3. 样式导入
+
+- 使用 WXSS 提供的 @import 语法，可以导入外联的样式表。
+
+- @import 后跟需要导入的外联样式表的相对路径，用 ; 表示语句结束：
+
+<img src="assets/2_template_and_config/image-20240409001558224.png" alt="image-20240409001558224" style="zoom:67%;" />
+
+## 2.4. 全局样式和局部样式
+
+- 定义在 app.wxss 中的样式为全局样式，作用于每一个页面。
+
+- 在页面的 .wxss 文件中定义的样式为局部样式，只作用于当前页面。
+  - 当局部样式和全局样式冲突时，根据就近原则，局部样式会覆盖全局样式
+  - 当局部样式的权重大于或等于全局样式的权重时，才会覆盖全局的样式
+
+比如：
+
+<img src="assets/2_template_and_config/image-20240409001817807.png" alt="image-20240409001817807" style="zoom: 67%;" />
 
 
 
+<img src="assets/2_template_and_config/image-20240409001855138.png" alt="image-20240409001855138" style="zoom:67%;" />
 
 
 
+![image-20240409001737464](assets/2_template_and_config/image-20240409001737464.png)
 
-## 2.4. 
+可以看到权重如下：
+
+<img src="assets/2_template_and_config/image-20240409001943662.png" alt="image-20240409001943662" style="zoom: 67%;" />
+
+<img src="assets/2_template_and_config/image-20240409002010013.png" alt="image-20240409002010013" style="zoom: 57%;" />
+
+三个数字分别代表：`ID - CLASS - TYPE`
 
 
-
-
-
-
-
-## 2.5. 
 
 
 
 # 3. 全局配置
 
 
+
+
+
+```html
+
+```
+
+
+
+```html
+
+```
+
+
+
+```html
+
+```
+
+
+
+```html
+
+```
 
 
 
