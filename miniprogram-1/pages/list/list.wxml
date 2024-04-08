@@ -1,14 +1,32 @@
 <!--pages/list/list.wxml-->
 <!-- <text>pages/list/list.wxml</text> -->
+<!-- =========================================== 2. 模板与样式 ======================================== -->
 <view class="divider">
-  <text class="divider-text">2. 模板与样式</text>
+    <text class="divider-text">2. 模板与样式</text>
 </view>
 
+<!-- ======================================= 2.2. WXSS 模板样式 ====================================== -->
+<view class="divider2">
+    <text class="divider-text">2.2. WXSS 模板样式</text>
+</view>
+
+
+<!-- ======================================= 2.1. WXML 模板语法 ====================================== -->
+<text>\n</text>
+<view class="divider2">
+    <text class="divider-text">2.1. WXML 模板语法</text>
+</view>
+
+<!-- ================ 数据绑定 ============== -->
+<view>~~~~~~~~~~~ 数据绑定 ~~~~~~~~~~~ </view>
 <view>{{info}}</view>
 <image src="{{imgSrc}}" mode="aspectFit"></image>
 <view>{{randNum1 > 5? '>5' : '<=5'}}</view>
 <view>{{randNum1 * 100}}</view>
 
+<!-- ================ 事件绑定 ============== -->
+<text>\n</text>
+<view>~~~~~~~~~~~ 事件绑定 ~~~~~~~~~~~ </view>
 <text>\n</text>
 <button type="primary" bindtap="btnConsoleLog">console log按钮</button>
 <text>\n</text>
@@ -24,8 +42,51 @@
 
 
 
+<!-- ================ 条件渲染 ============== -->
+<text>\n</text>
+<view>~~~~~~~~~~~ 条件渲染 ~~~~~~~~~~~ </view>
+<text>\n</text>
+<button type="primary" bindtap="btnChangeType">切换type</button>
+<view wx:if="{{type === 1}}">type=1</view>
+<view wx:elif="{{type === 2}}">type=2</view>
+<view wx:else>type=3</view>
+
+<text>\n</text>
+<block wx:if="{{true}}">
+    <view>view1 using block</view>
+    <view>view2 using block</view>
+</block>
+<view wx:if="{{true}}">
+    <view>view1 using view</view>
+    <view>view2 using view</view>
+</view>
+
+<text>\n</text>
+<view hidden="{{!flag}}">show by hidden</view>
+<view wx:if="{{flag}}">show by wx:if</view>
+
+<!-- ================ 列表渲染 ============== -->
+<text>\n</text>
+<view>~~~~~~~~~~~ 列表渲染 ~~~~~~~~~~~ </view>
+<text>\n</text>
+<view wx:for="{{arr1}}" wx:key="key">
+    index: {{index}}, item: {{item}}
+</view>
+<text>\n</text>
+<view wx:for="{{arr1}}" wx:for-index="idx" wx:for-item="itm" wx:key="key">
+    index: {{idx}}, item: {{itm}}
+</view>
+<text>\n</text>
+<view wx:for="{{userList}}" wx:key="id">
+    {{item.name}}
+</view>
+
+
+
+
+<!-- =========================================== 1. 起步 ======================================== -->
 <view class="divider">
-  <text class="divider-text">1. 起步</text>
+    <text class="divider-text">1. 起步</text>
 </view>
 
 <view class="container1" id="container-view">
@@ -40,7 +101,7 @@
     <view>C</view>
 </scroll-view>
 
-<swiper class="swiper-container" indicator-dots indicator-color="white" indicator-active-color="gray" autoplay interval="2000" circular >
+<swiper class="swiper-container" indicator-dots indicator-color="white" indicator-active-color="gray" autoplay interval="2000" circular>
     <swiper-item>
         <view class="item">A</view>
     </swiper-item>

@@ -11,9 +11,23 @@ Page({
     randNum2: Math.random().toFixed(2),
     count: 0,
     inputMsg: '请输入：',
+    type: 1,
+    flag: true,
+    arr1: ['苹果', '华为', '小米'],
+    userList: [
+        {id: 1, name: 'name_a'},
+        {id: 2, name: 'name_b'},
+        {id: 3, name: 'name_c'},
+    ],
   },
 
-  // 定义按钮的事件处理函数
+  btnChangeType() {
+    var a = [1, 2, 3];
+    this.setData({
+        type: this.data.type = a[this.data.type % 3]
+    })
+  },
+
   btnConsoleLog(e) {
       console.log(e)
   },

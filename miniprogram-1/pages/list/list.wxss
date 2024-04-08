@@ -1,4 +1,17 @@
 .divider {
+    height: 4px;
+    background-color: #e5e5e5;
+    display: flex;
+    /* 垂直居中 */
+    align-items: center;
+    /* 水平居中 */
+    justify-content: center;
+    /* 相对定位 */
+    position: relative;
+    margin: 25px 8px;
+}
+
+.divider2 {
     height: 2px;
     background-color: #e5e5e5;
     display: flex;
@@ -8,9 +21,8 @@
     justify-content: center;
     /* 相对定位 */
     position: relative;
-    margin: 25px 10px;
+    margin: 25px 15px;
 }
-
 .divider-text {
     font-weight: bold;
     background-color: #fff;

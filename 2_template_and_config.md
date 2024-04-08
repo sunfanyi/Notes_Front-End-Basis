@@ -188,9 +188,148 @@ console输出：
 
 
 
+
+
+## 1.3. 条件渲染
+
+**wx:if**
+
+```html
+<button type="primary" bindtap="btnChangeType">切换type</button>
+<view wx:if="{{type === 1}}">type=1</view>
+<view wx:elif="{{type === 2}}">type=2</view>
+<view wx:else>type=3</view>
+```
+
+```javascript
+  btnChangeType() {
+    var a = [1, 2, 3];
+    this.setData({
+        type: this.data.type = a[this.data.type % 3]
+    })
+  },
+```
+
+<img src="assets/2_template_and_config/image-20240408215531185.png" alt="image-20240408215531185" style="zoom:67%;" />
+
+
+
+**结合 <block> 使用 wx:if**
+
+- 如果要一次性控制多个组件的展示与隐藏，可以使用一个 <block></block> 标签将多个组件包装起来，并在<block> 标签上使用 wx:if 控制属性。
+- 注意： <block> 并不是一个组件，它只是一个包裹性质的容器，不会在页面中做任何渲染。
+- block 和 view 包裹的区别：
+
+```html
+<block wx:if="{{true}}">
+    <view>view1 using block</view>
+    <view>view2 using block</view>
+</block>
+
+<view wx:if="{{true}}">
+    <view>view1 using view</view>
+    <view>view2 using view</view>
+</view>
+```
+
+<img src="assets/2_template_and_config/image-20240408215647872.png" alt="image-20240408215647872" style="zoom:80%;" />
+
+
+
+**hidden**
+
+- 直接使用 hidden="{{ condition }}" 也能控制元素的显示与隐藏
+
+- hidden 和 wx:if 的区别在于运行方式不同：
+
+  - wx:if 以动态创建和移除元素的方式，控制元素的展示与隐藏
+
+  - hidden 以切换样式的方式（display: none/block;），控制元素的显示与隐藏
+  - 一个性能好，一个灵活。
+
+- 使用建议
+
+  - 频繁切换时，使用 hidden
+  -  控制条件复杂时，使用 wx:if 搭配 wx:elif、wx:else 进行展示与隐藏的切换
+
+```html
+<view hidden="{{!flag}}">show by hidden</view>
+<view wx:if="{{flag}}">show by wx:if</view>
+```
+
+![image-20240408215128535](assets/2_template_and_config/image-20240408215128535.png)
+
+> 可以看到 hidden 是一直存在的，不需要重复创建。
+
+
+
+
+
+## 1.4. 列表渲染
+
+```javascript
+data: {
+    arr1: ['苹果', '华为', '小米'],
+    userList: [
+        {id: 1, name: 'name_a'},
+        {id: 2, name: 'name_b'},
+        {id: 3, name: 'name_c'},
+    ],
+  },
+```
+
+
+
+**wx:for**
+
+通过 wx:for 可以根据指定的数组，循环渲染重复的组件结构:
+
+```html
+<view wx:for="{{arr1}}" wx:key="key">
+    index: {{index}}, item: {{item}}
+</view>
+```
+
+> 这里的 `wx:key="key"` 是为了不显示警告，貌似也可以提升效率，也就是用默认index当索引。
+
+
+
+- 默认情况下，当前循环项的索引用 index 表示；当前循环项用 item 表示。
+- 也可以使用 `wx:for-index` 和 `wx:for-item` 手动指定索引和当前项的变量名，在嵌套式方式变量名重复可以使用：
+
+```html
+<view wx:for="{{arr1}}" wx:for-index="idx" wx:for-item="itm" wx:key="key">
+
+  index: {{idx}}, item: {{itm}}
+
+</view>
+```
+
+
+
+**wx:key 的使用**
+
+类似于 Vue 列表渲染中的 :key，小程序在实现列表渲染时，也建议为渲染出来的列表项指定唯一的 key 值，从而提高渲染的效率：
+
+```html
+<view wx:for="{{userList}}" wx:key="id">
+    {{item.name}}
+</view>
+```
+
+
+
 # 2. WXSS 模板样式
 
+## 2.1. 
 
+```html
+
+```
+
+
+
+## 2.2. 
 
 
 
@@ -200,7 +339,9 @@ console输出：
 
 ```
 
-```javascript
+
+
+```html
 
 ```
 
@@ -210,17 +351,31 @@ console输出：
 
 ```
 
-```javascript
+
+
+```html
 
 ```
 
 
 
+## 2.3. 
 
 
 
 
 
+
+
+## 2.4. 
+
+
+
+
+
+
+
+## 2.5. 
 
 
 
