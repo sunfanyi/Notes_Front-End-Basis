@@ -1,5 +1,14 @@
 <!--pages/list/list.wxml-->
 <!-- <text>pages/list/list.wxml</text> -->
+<!-- =========================================== 4. 网络数据请求 ======================================== -->
+<view class="divider">
+    <text class="divider-text">4. 网络数据请求</text>
+</view>
+
+<button type="primary" bind:tap="btnApiGet">发起GET请求</button>
+<text>\n</text>
+<button type="primary" bind:tap="btnApiPost">发起POST请求</button>
+
 <!-- =========================================== 2. 模板与样式 ======================================== -->
 <view class="divider">
     <text class="divider-text">2. 模板与样式</text>

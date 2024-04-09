@@ -383,9 +383,189 @@ data: {
 
 
 
+# 3. 页面配置
+
+小程序根目录下的 app.json 文件是小程序的全局配置文件。常用的配置项如下：
+
+- pages: 记录当前小程序所有页面的存放路径
+
+- window: 全局设置小程序窗口的外观
+
+- tabBar: 设置小程序底部的  tabBar 效果
+
+- style: 是否启用新版的组件样式
 
 
-# 3. 全局配置
+
+## 3.1. tabBar
+
+tabBar 是移动端应用常见的页面效果，用于实现多页面的快速切换。小程序中通常将其分为：
+
+- 底部 tabBar
+
+- 顶部 tabBar
+
+  
+
+> - tabBar中只能配置最少 2 个、最多 5 个 tab 页签
+> - 当渲染顶部 tabBar 时，不显示 icon，只显示文本
+
+
+
+**tabBar 的 6 个组成部分**
+
+<img src="assets/2_template_and_config/image-20240409221521045.png" alt="image-20240409221521045" style="zoom:67%;" />
+
+
+
+**tabBar 节点的配置项**
+
+<img src="assets/2_template_and_config/image-20240409221640896.png" alt="image-20240409221640896" style="zoom:70%;" />
+
+
+
+**每个 tab 项的配置选项**
+
+<img src="assets/2_template_and_config/image-20240409221705301.png" alt="image-20240409221705301" style="zoom:70%;" />
+
+
+
+举例：
+
+```json
+"tabBar": {
+    "list": [
+    {
+        "pagePath": "pages/list/list",
+        "text": "list",
+        "iconPath": "/images/tabs/home.png",
+        "selectedIconPath": "/images/tabs/home-active.png"
+    },
+    {
+        "pagePath": "pages/index/index",
+        "text": "index",
+        "iconPath": "/images/tabs/contact.png",
+        "selectedIconPath": "/images/tabs/contact-active.png"
+    },
+    {
+        "pagePath": "pages/logs/logs",
+        "text": "logs",
+        "iconPath": "/images/tabs/message.png",
+        "selectedIconPath": "/images/tabs/message-active.png"
+    }
+    ]
+},
+```
+
+<img src="assets/2_template_and_config/image-20240409221809425.png" alt="image-20240409221809425" style="zoom:67%;" />
+
+
+
+
+
+## 3.2. window
+
+<img src="assets/2_template_and_config/image-20240409221222792.png" alt="image-20240409221222792" style="zoom:67%;" />
+
+**window 节点常用的配置项**
+
+<img src="assets/2_template_and_config/image-20240409221246613.png" alt="image-20240409221246613" style="zoom:70%;" />
+
+```json
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarBackgroundColor": "#ffffff",
+    "enablePullDownRefresh": true,
+    "backgroundColor": "#efefef",
+    "backgroundTextStyle": "dark",
+    "onReachBottomDistance": 50
+  },
+```
+
+> 如果要单独修改每个 tab 页面的 window，也可以直接去页面中的 json 文件修改。
+
+
+
+
+
+# 4. 网络数据请求
+
+出于安全性方面的考虑，小程序官方对数据接口的请求做出了如下两个限制：
+
+- 只能请求 HTTPS 类型的接口
+- 必须将接口的域名添加到信任列表中
+
+<img src="assets/2_template_and_config/image-20240409232543352.png" alt="image-20240409232543352" style="zoom:67%;" />
+
+
+
+**配置 request 合法域名**
+
+- 配置步骤：登录微信小程序管理后台 -> 开发 -> 开发设置 -> 服务器域名 -> 修改 request 合法域名
+
+注意事项：
+
+1. 域名只支持 https 协议
+2. 域名不能使用 IP 地址或 localhost
+3. 域名必须经过 ICP 备案
+4. 服务器域名一个月内最多可申请 5 次修改
+
+
+
+**GET**
+
+```javascript
+  btnApiGet() {
+    wx.request({
+        url: 'https://www.escook.cn/api/get',
+        method: "GET",
+        data: {
+            name: "zs",
+            age: 20,
+        },
+        success: (res) => {
+            console.log(res.data)
+        }
+    })
+  },
+```
+
+
+
+**POST**
+
+```javascript
+  btnApiPost() {
+    wx.request({
+        url: 'https://www.escook.cn/api/post',
+        method: "POST",
+        data: {
+            name: "zs",
+            age: 20,
+        },
+        success: (res) => {
+            console.log(res.data)
+        }
+    })
+  },
+```
+
+
+
+**在页面刚加载时请求数据**
+
+```javascript
+  onLoad(options) {
+    this.btnApiGet()
+  },
+```
+
+
+
+
+
+
 
 
 
@@ -409,9 +589,6 @@ data: {
 
 
 
-```html
-
-```
 
 
 
@@ -421,21 +598,8 @@ data: {
 
 
 
-# 4. 页面配置
 
 
 
-
-
-
-
-# 5. 网络数据请求
-
-
-
-
-
-
-
-# 6. 案例 - 本地生活（首页）
+# 5. 案例 - 本地生活（首页）
 
