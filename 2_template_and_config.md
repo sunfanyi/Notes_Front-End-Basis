@@ -565,41 +565,90 @@ tabBar 是移动端应用常见的页面效果，用于实现多页面的快速�
 
 
 
-
-
-
-
-
-
-```html
-
-```
-
-
-
-```html
-
-```
-
-
-
-```html
-
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # 5. 案例 - 本地生活（首页）
+
+<img src="assets/2_template_and_config/image-20240411235216545.png" alt="image-20240411235216545" style="zoom: 50%;" />
+
+
+
+```html
+<!-- 轮播图区域 -->
+<swiper indicator-dots indicator-color="white" indicator-active-color="gray" circular>
+    <swiper-item wx:for="{{swiperList}}" wx:key="key">
+        <image src="{{item.image}}"></image>
+    </swiper-item>
+</swiper>
+
+<!-- 九宫格 -->
+<view class="grid-list">
+    <view class="grid-item" wx:for="{{gridList}}" wx:key="key">
+        <image src="{{item.icon}}"></image>
+        <text>{{item.name}}</text>
+    </view>
+</view>
+
+<!-- 图片 -->
+<view class="img-box">
+    <image src="/images/link-01.png" mode="widthFix"></image>
+    <image src="/images/link-02.png" mode="widthFix"></image>
+</view>
+```
+
+
+
+```css
+swiper {
+    height: 350rpx;
+}
+
+swiper image {
+    width: 100%;
+    height: 100%;
+}
+
+.grid-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    border-left: 1rpx solid #efefef;
+    border-top: 1rpx solid #efefef;
+    box-sizing: border-box;
+}
+
+.grid-item {
+    width: 33.33%;
+    height: 200rpx;
+    display: flex;
+    flex-direction: column;
+    /* 副方向居中，前面设置了flex-direction: column，所以变成水平居中 */
+    align-items: center;
+    /* 主方向居中，前面设置了flex-direction: column，所以变成垂直居中 */
+    justify-content: center;
+
+    border-right: 1rpx solid #efefef;
+    border-bottom: 1rpx solid #efefef;
+    box-sizing: border-box;
+}
+
+.grid-item image {
+    width: 60rpx;
+    height: 60rpx;
+}
+
+.grid-item text {
+    font-size: 24rpx;
+    margin-top: 10rpx;
+}
+
+.img-box {
+    display: flex;
+    padding: 20rpx 10rpx;
+    justify-content: space-around;
+}
+
+.img-box image {
+    /* 配合上面的 space-around，实现两张图片之间的间距 */
+    width: 45%;
+}
+```
 
