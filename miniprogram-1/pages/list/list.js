@@ -22,6 +22,19 @@ Page({
         apiData: ""
     },
 
+    btnGoToMessage() {
+        wx.switchTab({
+          url: '/pages/message/message',
+        })
+    },
+
+    btnGoToInfo() {
+        wx.navigateTo({
+        //   url: '/pages/info/info',
+          url: '/pages/info/info?name=zs&age=20', // 传参
+        })
+    },
+
     btnApiGet() {
         wx.request({
             url: 'https://www.escook.cn/api/get',
@@ -125,14 +138,18 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh() {
-
+        console.log('下拉刷新')
+        this.setData({
+            count: 0
+        })
+        wx.stopPullDownRefresh()
     },
 
     /**
      * 页面上拉触底事件的处理函数
      */
     onReachBottom() {
-
+        console.log('上拉触底')
     },
 
     /**

@@ -1,4 +1,4 @@
-/* pages/contact/contact.wxss */
+/* pages/pullDownExample/pullDownExample.wxss */
 
 .colotList-item {
     border: 1rpx solid #efefef;

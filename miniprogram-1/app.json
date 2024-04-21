@@ -1,7 +1,10 @@
 {
   "pages": [
     "pages/list/list",
+    "pages/message/message",
     "pages/index/index",
+    "pages/pullDownExample/pullDownExample",
+    "pages/info/info",
     "pages/logs/logs"
   ],
   "window": {
@@ -11,7 +14,7 @@
     "enablePullDownRefresh": true,
     "backgroundColor": "#efefef",
     "backgroundTextStyle": "dark",
-    "onReachBottomDistance": 50
+    "onReachBottomDistance": 150
   },
   "tabBar": {
       "list": [
@@ -22,16 +25,16 @@
             "selectedIconPath": "/images/tabs/home-active.png"
         },
         {
+            "pagePath": "pages/message/message",
+            "text": "message",
+            "iconPath": "/images/tabs/message.png",
+            "selectedIconPath": "/images/tabs/message-active.png"
+        },
+        {
             "pagePath": "pages/index/index",
             "text": "index",
             "iconPath": "/images/tabs/contact.png",
             "selectedIconPath": "/images/tabs/contact-active.png"
-        },
-        {
-            "pagePath": "pages/logs/logs",
-            "text": "logs",
-            "iconPath": "/images/tabs/message.png",
-            "selectedIconPath": "/images/tabs/message-active.png"
         }
       ]
   },

@@ -1,4 +1,6 @@
 <!--logs.wxml-->
+<text>\n</text>
+<navigator open-type="navigateBack" delta="1">后退</navigator>
 <scroll-view class="scrollarea" scroll-y type="list">
   <block wx:for="{{logs}}" wx:key="timeStamp" wx:for-item="log">
     <view class="log-item">{{index + 1}}. {{log.date}}</view>

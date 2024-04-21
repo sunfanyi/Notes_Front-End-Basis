@@ -1,18 +1,55 @@
 <!--pages/list/list.wxml-->
 <!-- <text>pages/list/list.wxml</text> -->
-<!-- =========================================== 4. 网络数据请求 ======================================== -->
+
+<!-- =========================================== 三. 视图与逻辑 ======================================== -->
 <view class="divider">
-    <text class="divider-text">4. 网络数据请求</text>
+    <text class="divider-text">三. 视图与逻辑</text>
+</view>
+
+
+<!-- ======================================= 3.2. 页面事件 ======================================= -->
+<view class="divider2">
+    <text class="divider-text">3.2. 页面事件</text>
+</view>
+
+<text>下拉刷新: {{count}}</text>
+<button type="primary" bindtap="btnChangeCount">+1按钮</button>
+<text>上拉触底:</text>
+<navigator url="/pages/pullDownExample/pullDownExample" open-type="navigate">进入示例</navigator>
+
+<!-- ======================================= 3.1. 页面导航 ======================================= -->
+<view class="divider2">
+    <text class="divider-text">3.1. 页面导航</text>
+</view>
+
+<text>声明式导航:</text>
+<!-- open-type="switchTab" 是必须的 -->
+<navigator url="/pages/message/message" open-type="switchTab">- 跳转到tabBar (message)</navigator>
+<!-- open-type="navigate" 不是必须的 -->
+<navigator url="/pages/info/info" open-type="navigate">- 跳转到非tabBar (info)</navigator>
+<!-- 传参： -->
+<navigator url="/pages/info/info?name=zs&age=20" open-type="navigate"> 跳转到非tabBar (info)</navigator>
+
+<text>\n编程式导航:</text>
+<text>\n- 跳转到tabBar (message)</text>
+<button type="primary" bind:tap="btnGoToMessage">to Message</button>
+<text>- 跳转到非tabBar (info)</text>
+<button type="primary" bind:tap="btnGoToInfo">to Info</button>
+
+
+<!-- =========================================== 二. 模板与样式 ======================================== -->
+<view class="divider">
+    <text class="divider-text">二. 模板与样式</text>
+</view>
+
+<!-- ======================================= 2.4. 网络数据请求 ======================================= -->
+<view class="divider2">
+    <text class="divider-text">2.4. 网络数据请求</text>
 </view>
 
 <button type="primary" bind:tap="btnApiGet">发起GET请求</button>
 <text>\n</text>
 <button type="primary" bind:tap="btnApiPost">发起POST请求</button>
-
-<!-- =========================================== 2. 模板与样式 ======================================== -->
-<view class="divider">
-    <text class="divider-text">2. 模板与样式</text>
-</view>
 
 <!-- ======================================= 2.2. WXSS 模板样式 ====================================== -->
 <view class="divider2">
@@ -106,9 +143,9 @@
 
 
 
-<!-- =========================================== 1. 起步 ======================================== -->
+<!-- =========================================== 一. 起步 ======================================== -->
 <view class="divider">
-    <text class="divider-text">1. 起步</text>
+    <text class="divider-text">一. 起步</text>
 </view>
 
 <view class="container1" id="container-view">
@@ -153,3 +190,6 @@
 <button type="warn" size='mini' plain>警告按钮</button>
 
 <image src="/images/1.png" mode='aspectFit'></image>
+
+
+<view class="bottom-box"></view>

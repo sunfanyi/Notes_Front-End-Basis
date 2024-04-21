@@ -97,3 +97,9 @@ swiper-item:nth-child(2) .item {
 swiper-item:nth-child(3) .item {
     background-color: lightpink;
 }
+
+
+.bottom-box {
+    height: 2000rpx;
+    background-color: lightblue;
+}
