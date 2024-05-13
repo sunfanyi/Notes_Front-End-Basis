@@ -13,6 +13,12 @@ App({
       }
     })
   },
+  onShow() {  // 启动或后台切换到前台
+      console.log('onShow')
+  },
+  onHide() {  // 切换到后台
+      console.log('onHide')
+  },
   globalData: {
     userInfo: null
   }

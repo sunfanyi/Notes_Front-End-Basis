@@ -6,6 +6,24 @@
     <text class="divider-text">三. 视图与逻辑</text>
 </view>
 
+<!-- ======================================= 3.4. wsx 脚本 ======================================= -->
+<view class="divider2">
+    <text class="divider-text">3.4. wsx 脚本</text>
+</view>
+
+<wxs module="m1">
+    module.exports.toUpper = function(x) {
+        return x.toUpperCase()
+    }
+</wxs>
+
+<!-- 内嵌方法 -->
+<view>{{username}}</view>
+<view>{{m1.toUpper(username)}}</view>
+
+<!-- 外联方法 -->
+<wxs module="tools" src="../../utils/tools.wxs"></wxs>
+<view>{{tools.toLower(username)}}</view>
 
 <!-- ======================================= 3.2. 页面事件 ======================================= -->
 <view class="divider2">

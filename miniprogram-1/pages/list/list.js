@@ -19,7 +19,8 @@ Page({
             { id: 2, name: 'name_b' },
             { id: 3, name: 'name_c' },
         ],
-        apiData: ""
+        apiData: "",
+        username: "Jim",
     },
 
     btnGoToMessage() {

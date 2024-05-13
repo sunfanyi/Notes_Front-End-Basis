@@ -339,15 +339,92 @@ onPullDownRefresh() {
 
 # 3. 生命周期
 
+- 生命周期（Life Cycle）是指一个对象从创建 -> 运行 -> 销毁的整个阶段，强调的是一个时间段。
+
+- 生命周期函数：是由小程序框架提供的内置函数，会伴随着生命周期，自动按次序执行。
+
+- 生命周期函数的作用：允许程序员在特定的时间点，执行某些特定的操作。例如，页面刚加载的时候，可以在 onLoad 生命周期函数中初始化页面的数据。
 
 
 
+小程序中的生命周期函数分为两类，分别是：
+
+1. 应用的生命周期函数
+   - 特指小程序从启动 -> 运行 -> 销毁期间依次调用的那些函数
+2.  页面的生命周期函数
+   - 特指小程序中，每个页面从加载 -> 渲染 -> 销毁期间依次调用的那些函数
 
 
+
+## 3.1. 应用的生命周期函数
+
+小程序的应用生命周期函数需要在 app.js 中进行声明，示例代码如下：
+
+<img src="assets/3_view_and_logic/image-20240513221349907.png" alt="image-20240513221349907" style="zoom:67%;" />
+
+
+
+## 3.2. 页面的生命周期函数
+
+小程序的页面生命周期函数需要在页面的 .js 文件中进行声明，示例代码如下：
+
+<img src="assets/3_view_and_logic/image-20240513221413619.png" alt="image-20240513221413619" style="zoom:67%;" />
+
+> 注意区分 onLoad 和 onReady，如果要修改页面中的内容则必须等待渲染完成，也就是在 onReady 里用。
 
 
 
 # 4. WXS 脚本
+
+- WXS（WeiXin Script）是小程序独有的一套脚本语言，结合 WXML，可以构建出页面的结构。
+- wxml 中无法调用在页面的 .js 中定义的函数，但是，wxml 中可以调用 wxs 中定义的函数。因此，小程序中 wxs 的典型应用场景就是“过滤器”。
+- 虽然 wxs 的语法类似于 JavaScript，但是 wxs 和 JavaScript 是完全不同的两种语言
+  - wxs 不能调用 js 中定义的函数
+  - wxs 不能调用小程序提供的 API
+- 在 iOS 设备上，小程序内的 WXS 会比 JavaScript 代码快 2 ~ 20 倍
+
+
+
+## 4.1. 内嵌 WXS 脚本
+
+- wxs 代码可以编写在 wxml 文件中的 <wxs> 标签内，就像 Javascript 代码可以编写在 html 文件中的 <script> 标签内一样。
+- wxml 文件中的每个 <wxs></wxs> 标签，必须提供 module 属性，用来指定当前 wxs 的模块名称，方便在 wxml 中访问模块中的成员：
+
+```html
+<wxs module="m1">
+    module.exports.toUpper = function(x) {
+        return x.toUpperCase()
+    }
+</wxs>
+
+<!-- 内嵌方法 -->
+<view>{{username}}</view>
+<view>{{m1.toUpper(username)}}</view>
+```
+
+
+
+## 4.2. 外联 WXS 脚本
+
+wxs 代码还可以编写在以 .wxs 为后缀名的文件内，就像 javascript 代码可以编写在以 .js 为后缀名的文件中一样：
+
+<img src="assets/3_view_and_logic/image-20240513225845607.png" alt="image-20240513225845607" style="zoom:50%;" />
+
+```javascript
+function toLower(x) {
+  return x.toLowerCase()
+}
+
+module.exports = {
+  toLower: toLower
+}
+```
+
+```html
+<!-- 外联方法 -->
+<wxs module="tools" src="../../utils/tools.wxs"></wxs>
+<view>{{tools.toLower(username)}}</view>
+```
 
 
 
