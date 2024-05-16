@@ -432,31 +432,178 @@ module.exports = {
 
 # 5. 案例 - 本地生活（列表页面）
 
+<img src="assets/3_view_and_logic/image-20240516215241796.png" alt="image-20240516215241796" style="zoom:67%;" />
+
+- 美食页
+- 页面导航并传参
+- 上拉触底时加载下一页数据
+- 下拉刷新列表数据
 
 
 
-
-
+首页九宫格的传参
 
 ```html
-html
+<view class="grid-list">
+    <navigator class="grid-item" wx:for="{{gridList}}" wx:key="key" url="/pages/shoplist/shoplist?id={{item.id}}&title={{item.name}}">
+        <image src="{{item.icon}}"></image>
+        <text>{{item.name}}</text>
+    </navigator>
+</view>
 ```
 
 
+
+- onLoad 接收参数
+- onReady 渲染标题
+- 调用API获取 shopList 信息
+  - 每次调用限制只取列表的一部分
 
 ```javascript
-js
+onLoad(options) {
+    this.setData({
+        query: options
+    }),
+    this.getShopList()
+},
+
+onReady() {
+    wx.setNavigationBarTitle({
+        title: this.data.query.title
+    })
+},
+        
+getShopList(cb) {
+    this.setData({
+        isShopListLoading: true
+    })
+
+    wx.showLoading({
+        title: '数据加载中。。。',
+    })
+    wx.request({
+        url: `https://applet-base-api-t.itheima.net/categories/${this.data.query.id}/shops`,
+        method: "GET",
+        data: {
+            _page: this.data.page, // 表示请求第几页的数据
+            _limit: this.data.pageSize  // 表示每页请求几条数据
+        },
+        success: (res) => {
+            this.setData({
+                shopList: [...this.data.shopList, ...res.data], // ... 用于转换成数组
+                total: res.header['X-Total-Count'] - 0,  // - 0 用于转换成数值
+            })
+        },
+        complete: () => {
+            wx.hideLoading()
+            this.setData({
+                isShopListLoading: false
+            })
+            cb && cb() // 如果传入了cb函数则调用
+        }
+    })
+},
 ```
 
 
+
+页面：
+
+```html
+<view wx:for="{{shopList}}" wx:key="index" class="shopList-item"
+>
+    <view>
+        <image src="{{item.images[0]}}"></image>
+    </view>
+
+    <view class="shopList-msg">
+        <text style="font-weight: bold;">{{item.name}}\n</text>
+        <text>电话: {{tools.splitPhone(item.phone)}}\n</text>
+        <text>地址: {{item.address}}\n</text>
+        <text>营业时间: {{item.businessHours}}\n</text>
+    </view>
+</view>
+
+<wxs src="../../utils/tools.wxs" module="tools"></wxs>
+```
+
+
+
+其中`../../utils/tools.wxs`：
+
+```javascript
+function splitPhone(str) { 
+    // 号码格式：15530710686 -> 155-3071-0686
+    if(str.length !== 11) return str
+    var arr = str.split('')
+    arr.splice(3, 0, '-')
+    arr.splice(8, 0, '-')
+    return arr.join('')
+}
+
+module.exports = {
+    splitPhone: splitPhone
+}
+```
+
+
+
+渲染：
 
 ```css
-css
+.shopList-item {
+    display: flex;
+    border: 1rpx solid #efefef;
+    border-radius: 8rpx  ;
+    padding: 15rpx;
+    margin: 15rpx;
+    box-shadow: 1rpx 1rpx 15rpx #ddd;
+}
+
+.shopList-item image {
+    width: 250rpx;
+    height: 250rpx;
+    /* 防止图片直接有空隙 */
+    display: block;
+    margin-right: 15rpx;
+}
+
+.shopList-msg {
+    display: flex;
+    /* 纵向对齐 */
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 24rpx;
+}
 ```
 
 
 
-```json
-json
-```
+下拉刷新 & 上拉触底
 
+```javascript
+onPullDownRefresh() {
+    this.setData({
+        shopList: [],
+        page: 1,
+        total: 0
+    })
+    this.getShopList(() => {
+        wx.stopPullDownRefresh() // 传递回调函数
+    })
+},
+    
+onReachBottom() {
+    if (this.data.page * this.data.pageSize >= this.data.total) { // 是否有下一页数据
+        return wx.showToast({
+            title: '数据加载完毕',
+            icon: 'none'
+        })
+    }
+    if (this.data.isShopListLoading) return
+    this.setData({
+        page: this.data.page + 1
+    })
+    this.getShopList()
+},
+```

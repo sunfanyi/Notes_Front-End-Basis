@@ -3,5 +3,18 @@
   "projectname": "local_life",
   "setting": {
     "compileHotReLoad": true
+  },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/shoplist/shoplist",
+          "pathName": "pages/shoplist/shoplist",
+          "query": "id=1&title=美食",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
   }
 }

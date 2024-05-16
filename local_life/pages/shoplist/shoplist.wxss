@@ -1,0 +1,24 @@
+.shopList-item {
+    display: flex;
+    border: 1rpx solid #efefef;
+    border-radius: 8rpx  ;
+    padding: 15rpx;
+    margin: 15rpx;
+    box-shadow: 1rpx 1rpx 15rpx #ddd;
+}
+
+.shopList-item image {
+    width: 250rpx;
+    height: 250rpx;
+    /* 防止图片直接有空隙 */
+    display: block;
+    margin-right: 15rpx;
+}
+
+.shopList-msg {
+    display: flex;
+    /* 纵向对齐 */
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 24rpx;
+}
